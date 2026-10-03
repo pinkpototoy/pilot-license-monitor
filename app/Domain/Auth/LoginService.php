@@ -34,7 +34,11 @@ class LoginService
         $user = User::whereRaw('lower(email) = ?', [$email])->first();
 
         if (! $user) {
-            Hash::check($password, '$argon2id$v=19$m=65536,t=4,p=1$c29tZXNhbHQ$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'); // equalize timing
+            Hash::check(
+                $password,
+                '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llCwJqz4d0d8QwJ3K6fK6'
+            ); // equalize timing
+
             $this->log($email, null, $ip, false, 'unknown_email');
             throw new LoginFailed(self::GENERIC_ERROR);
         }
