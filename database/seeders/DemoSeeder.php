@@ -28,7 +28,7 @@ class DemoSeeder extends Seeder
 {
     public function run(StudentService $students, CredentialService $credentials, ComplianceEngine $engine): void
     {
-        /* abort_if(app()->environment('production'), 1, 'DemoSeeder must not run in production.'); */
+        abort_if(app()->environment('production'), 1, 'DemoSeeder must not run in production.');
 
         $make = function (string $email, string $name, Role $role) {
             $u = User::firstOrNew(['email' => $email]);
