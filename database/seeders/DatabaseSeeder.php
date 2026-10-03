@@ -9,8 +9,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(ReferenceDataSeeder::class);
+
         if (! app()->environment('production')) {
             $this->call(DemoSeeder::class);
+        }
+
+        if (app()->environment('production')) {
+            $this->call(ProductionAdminSeeder::class);
         }
     }
 }
